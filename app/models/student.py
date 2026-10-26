@@ -15,7 +15,7 @@ class Student(Base):
     contact: Mapped[str] = mapped_column(String(255), nullable=True)
     notes: Mapped[str] = mapped_column(Text, nullable=True)
     created_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), server_default=func.now())
-    updated_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), onupdate=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
     mentor: Mapped["MentorProfile"] = relationship("MentorProfile", back_populates="students")
     subjects: Mapped[list["StudentSubject"]] = relationship("StudentSubject", back_populates="student", cascade="all, delete-orphan")

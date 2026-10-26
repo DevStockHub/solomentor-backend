@@ -13,6 +13,6 @@ class MentorProfile(Base):
     subjects: Mapped[str] = mapped_column(Text, nullable=True)  # JSON string of subject names
     bio: Mapped[str] = mapped_column(Text, nullable=True)
     created_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), server_default=func.now())
-    updated_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), onupdate=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
     students: Mapped[list["Student"]] = relationship("Student", back_populates="mentor", cascade="all, delete-orphan")
