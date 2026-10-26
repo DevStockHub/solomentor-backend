@@ -22,3 +22,4 @@ class MentorProfile(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
     students: Mapped[List["Student"]] = relationship("Student", back_populates="mentor", cascade="all, delete-orphan")
+    students: Mapped[List["Student"]] = relationship("Student", back_populates="mentor", cascade="all, delete-orphan")
