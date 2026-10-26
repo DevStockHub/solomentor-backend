@@ -1,0 +1,42 @@
+# Environment variables and secrets (NEVER commit to GitHub)
+.env
+.env.local
+.env.*.local
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Logs & temp files
+*.log
+uvicorn.log
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files (if SQLite or dumps are created)
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.sql
+
