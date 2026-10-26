@@ -4,8 +4,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import select
 
 from app.core.config import settings
-from app.db.session import AsyncSessionLocal
+from app.db.base import Base
+from app.db.session import AsyncSessionLocal, engine
 from app.models.subject import Subject
+import app.models
 from app.api.v1.endpoints import (
     mentor_profile,
     students,
@@ -21,6 +23,10 @@ from app.api.v1.endpoints import (
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Ensure all tables exist on startup
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
     # Seed default STEM subjects if not already seeded
     default_subjects = [
         {"name": "Mathematics", "code": "MATH", "description": "Pure Mathematics, Calculus, Algebra & Statistics"},
